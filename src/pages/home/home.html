@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>FotosFacilito</h3>
+  <div *ngIf="!!auth.token">
+    <input type="file" (change)="fileChanges($event)">
+
+    <button ion-button secondary >Subir</button>  
+  </div>
+  <div *ngIf="!auth.token">
+    <p>Inicia sesión para poder subir imágenes</p>
+  </div>
+  <ion-card *ngFor="let item of images | async">
+    <img [src]="item.url">
+    <ion-card-title padding>{{item.name}}</ion-card-title>
+  </ion-card>
+  
+</ion-content>
